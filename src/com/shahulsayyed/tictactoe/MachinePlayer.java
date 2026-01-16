@@ -29,10 +29,23 @@ public class MachinePlayer implements Player{
         }
 
         if(move == '-'){
+          move = checkCenterMove(); // check whether center position is open on the grid.
+        }
+
+        if(move == '-'){
             move = getRandomMove();
         }
 
         return move;
+    }
+
+    public char checkCenterMove(){
+        int index = (grid.getGridSize() - 1) / 2;
+        char move = grid.getGrid().get(index).get(index);
+        if(move != opponentSymbol && move != mySymbol){
+            return move;
+        }
+        return '-';
     }
 
     private char getRandomMove(){
