@@ -21,10 +21,17 @@ public class MachinePlayer implements Player{
     @Override
     public char playMove(Grid grid){
         char move;
-        move = getOpponentsNextWinningMove();
+
+        move = getNextWinningMove(false); // Check for machine next winning move.
+
+        if(move == '-'){
+            move = getNextWinningMove(true); // Check for opponent next winning move.
+        }
+
         if(move == '-'){
             move = getRandomMove();
         }
+
         return move;
     }
 
@@ -36,7 +43,7 @@ public class MachinePlayer implements Player{
         return move;
     }
 
-    private char getOpponentsNextWinningMove(){
+    private char getNextWinningMove(boolean forOpponent){
         ArrayList<ArrayList<Character>> allWinningPossibilities = GameRules.getAllWinningPossibilities(grid);
         int capturedPositionCount;
         int vacantPositionCount;
@@ -47,12 +54,23 @@ public class MachinePlayer implements Player{
             vacantPositionCount = 0;
 
             for(char move: possibility){
-                if(move == opponentSymbol){
-                    capturedPositionCount++;
+                if(forOpponent){
+                    if(move == opponentSymbol){
+                        capturedPositionCount++;
+                    }
+                    else if(move != mySymbol){
+                        vacantPositionCount++;
+                        winningMove = move;
+                    }
                 }
-                else if(move != mySymbol){
-                    vacantPositionCount++;
-                    winningMove = move;
+                else{
+                    if(move == mySymbol){
+                        capturedPositionCount++;
+                    }
+                    else if(move != opponentSymbol){
+                        vacantPositionCount++;
+                        winningMove = move;
+                    }
                 }
             }
 
