@@ -15,9 +15,9 @@ public class GameRules {
     }
 
     public static boolean isThereAnyWinner(Grid grid){
-        ArrayList<ArrayList<Character>> winningPossibilities = getWinningPossibilities(grid);
+        ArrayList<ArrayList<Character>> allWinningPossibilities = getAllWinningPossibilities(grid);
 
-        for(ArrayList<Character> possibility: winningPossibilities){
+        for(ArrayList<Character> possibility: allWinningPossibilities){
             if(isPossibilityWinning(possibility)){
                 return true;
             }
@@ -46,8 +46,8 @@ public class GameRules {
         return true;
     }
 
-    private static ArrayList<ArrayList<Character>> getWinningPossibilities(Grid grid){
-        ArrayList<ArrayList<Character>> winningPossibilities = new ArrayList<>();
+    public static ArrayList<ArrayList<Character>> getAllWinningPossibilities(Grid grid){
+        ArrayList<ArrayList<Character>> allWinningPossibilities = new ArrayList<>();
 
 
         ArrayList<Character> diagonal = new ArrayList<>();
@@ -63,17 +63,17 @@ public class GameRules {
                column.add(grid.getGrid().get(j).get(i));
             }
 
-            winningPossibilities.add(row);
-            winningPossibilities.add(column);
+            allWinningPossibilities.add(row);
+            allWinningPossibilities.add(column);
 
             //For diagonal winning possibilities.
             diagonal.add(grid.getGrid().get(i).get(i));
             antiDiagonal.add(grid.getGrid().get(i).get(grid.getGridSize() - 1 - i));
         }
 
-        winningPossibilities.add(diagonal);
-        winningPossibilities.add(antiDiagonal);
+        allWinningPossibilities.add(diagonal);
+        allWinningPossibilities.add(antiDiagonal);
 
-        return  winningPossibilities;
+        return  allWinningPossibilities;
     }
 }
