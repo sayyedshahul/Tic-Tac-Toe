@@ -38,6 +38,10 @@ public class Grid {
         return gridSize;
     }
 
+    public void setGrid(ArrayList<ArrayList<Character>> grid) {
+        this.grid = grid;
+    }
+
     @Override
     public String toString(){
         StringBuilder gridString = new StringBuilder();

@@ -4,8 +4,10 @@ import java.util.Scanner;
 
 public class HumanPlayer implements Player{
     private char mySymbol;
+    private Grid grid;
 
-    public HumanPlayer(char mySymbol){
+    public HumanPlayer(char mySymbol, Grid grid){
+        this.grid = grid;
         this.mySymbol = mySymbol;
     }
 
@@ -14,7 +16,7 @@ public class HumanPlayer implements Player{
     }
 
     @Override
-    public char playMove(Grid grid) {
+    public char playMove() {
         Scanner scn = new Scanner(System.in);
         char userMove;
 

@@ -19,17 +19,21 @@ public class MachinePlayer implements Player{
     }
 
     @Override
-    public char playMove(Grid grid){
+    public char playMove(){
         char move;
 
-        move = getNextWinningMove(false); // Check for machine next winning move.
+        move = getNextWinningMove(false, grid); // Check for machine next winning move.
 
         if(move == '-'){
-            move = getNextWinningMove(true); // Check for opponent next winning move.
+            move = getNextWinningMove(true, grid); // Check for opponent next winning move.
         }
 
         if(move == '-'){
           move = checkCenterMove(); // check whether center position is open on the grid.
+        }
+
+        if (move == '-') {
+         move = getCornerMove();
         }
 
         if(move == '-'){
@@ -37,6 +41,30 @@ public class MachinePlayer implements Player{
         }
 
         return move;
+    }
+
+    public char getCornerMove(){
+        Grid gridCopy = new Grid(grid.getGridSize());
+        gridCopy.setGrid(new ArrayList<>(grid.getGrid()));
+        char lastVacantCornerMove = '-';
+
+        for(int i = 0; i <= gridCopy.getGridSize() - 1; i+=grid.getGridSize() - 1){
+            for(int j = 0; j <= gridCopy.getGridSize() - 1; j+=grid.getGridSize() - 1){
+                char cornerValue =  gridCopy.getGrid().get(i).get(j);
+
+                if(cornerValue != mySymbol && cornerValue != opponentSymbol){
+                    lastVacantCornerMove = cornerValue;
+                    gridCopy.changeGrid(cornerValue, mySymbol);
+
+                    if(getNextWinningMove(false, gridCopy) != '-'){
+                        return cornerValue;
+                    }
+
+                    gridCopy.getGrid().get(i).set(j, cornerValue);
+                }
+            }
+        }
+        return lastVacantCornerMove;
     }
 
     public char checkCenterMove(){
@@ -56,7 +84,7 @@ public class MachinePlayer implements Player{
         return move;
     }
 
-    private char getNextWinningMove(boolean forOpponent){
+    private char getNextWinningMove(boolean forOpponent, Grid grid){
         ArrayList<ArrayList<Character>> allWinningPossibilities = GameRules.getAllWinningPossibilities(grid);
         int capturedPositionCount;
         int vacantPositionCount;

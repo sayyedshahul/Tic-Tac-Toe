@@ -15,7 +15,7 @@ public class GamePlay {
         while(true){
             System.out.println(grid);
 
-            grid.changeGrid(humanPlayer.playMove(grid), 'X');
+            grid.changeGrid(humanPlayer.playMove(), 'X');
             if(GameRules.isThereAnyWinner(grid)){
                System.out.println("You won!!!!!");
                break;
@@ -25,7 +25,7 @@ public class GamePlay {
                 break;
             }
 
-            grid.changeGrid(machinePlayer.playMove(grid), 'O');
+            grid.changeGrid(machinePlayer.playMove(), 'O');
             if(GameRules.isThereAnyWinner(grid)){
                 System.out.println("Machine won!!!!!");
                 break;
