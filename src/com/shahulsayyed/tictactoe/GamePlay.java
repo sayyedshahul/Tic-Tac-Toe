@@ -19,32 +19,34 @@ public class GamePlay {
         Player player1 = chooseTurn();
         Player player2 = player1 == humanPlayer ? machinePlayer : humanPlayer;
 
+        Player currentPlayer = player2;
+
         System.out.println(grid);
-        while(true){
-            grid.changeGrid(player1.playMove(), player1.getMySymbol());
+        while(!isGameFinished(currentPlayer)){
+//            grid.changeGrid(player1.playMove(), player1.getMySymbol());
+//            System.out.println(grid);
+//            if(isGameFinished(player1)) break;
+//
+//            grid.changeGrid(player2.playMove(), player2.getMySymbol());
+//            System.out.println(grid);
+//            if(isGameFinished(player2)) break;
+
+            currentPlayer = currentPlayer == player1 ? player2 : player1;
+            grid.changeGrid(currentPlayer.playMove(), currentPlayer.getMySymbol());
             System.out.println(grid);
-
-            if(GameRules.isThereAnyWinner(grid)){
-               System.out.println(getWinningMessage(player1));
-               break;
-            }
-            else if(GameRules.isDraw(grid)){
-                System.out.println("Game Drawn (:");
-                break;
-            }
-
-            grid.changeGrid(player2.playMove(), player2.getMySymbol());
-            System.out.println(grid);
-            if(GameRules.isThereAnyWinner(grid)){
-
-                System.out.println(getWinningMessage(player2));
-                break;
-            }
-            else if(GameRules.isDraw(grid)){
-                System.out.println("Game Drawn (:");
-                break;
-            }
         }
+    }
+
+    private boolean isGameFinished(Player player){
+        if(GameRules.isThereAnyWinner(grid)){
+            System.out.println(getWinningMessage(player));
+            return true;
+        }
+        else if(GameRules.isDraw(grid)){
+            System.out.println("Game Drawn (:");
+            return true;
+        }
+        return false;
     }
 
     public Player chooseTurn(){ // For user to select who will go first.
