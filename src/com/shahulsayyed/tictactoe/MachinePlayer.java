@@ -12,10 +12,20 @@ public class MachinePlayer implements Player{
 //        this.moveGenerator = moveGenerator;
 //    }
 
-    public MachinePlayer(char mySymbol, char opponentSymbol, Grid grid){
-        this.mySymbol = mySymbol;
-        this.opponentSymbol = opponentSymbol;
+    public MachinePlayer(Grid grid){
         this.grid = grid;
+    }
+
+    public void setMySymbol(char symbol){
+        mySymbol = symbol;
+    }
+
+    public char getMySymbol(){
+        return mySymbol;
+    }
+
+    public void setOpponentSymbol(char symbol){
+        opponentSymbol = symbol;
     }
 
     @Override

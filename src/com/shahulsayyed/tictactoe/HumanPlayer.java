@@ -6,13 +6,16 @@ public class HumanPlayer implements Player{
     private char mySymbol;
     private Grid grid;
 
-    public HumanPlayer(char mySymbol, Grid grid){
+    public HumanPlayer(Grid grid){
         this.grid = grid;
-        this.mySymbol = mySymbol;
     }
 
     public char getMySymbol(){
         return mySymbol;
+    }
+
+    public void setMySymbol(char symbol){
+        mySymbol = symbol;
     }
 
     @Override
