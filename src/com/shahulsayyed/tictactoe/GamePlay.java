@@ -6,20 +6,37 @@ import org.fusesource.jansi.AnsiConsole;
 
 public class GamePlay {
     private Grid grid;
-    private HumanPlayer humanPlayer;
+    private HumanPlayer humanPlayer1;
+    private HumanPlayer humanPlayer2;
     private MachinePlayer machinePlayer;
 
-    public GamePlay(Grid grid, HumanPlayer humanPlayer, MachinePlayer machinePlayer){
+    public GamePlay(Grid grid, HumanPlayer humanPlayer1, HumanPlayer humanPlayer2, MachinePlayer machinePlayer){
         this.grid = grid;
-        this.humanPlayer = humanPlayer;
+        this.humanPlayer1 = humanPlayer1;
+        this.humanPlayer2 = humanPlayer2;
         this.machinePlayer = machinePlayer;
     }
 
     public void play(){
+        Scanner scn = new Scanner(System.in);
+        Player player1;
+        Player player2;
+        
         System.out.println("Welcome to Tic Tac Toe");
-        System.out.println("Doing toss.......");
-        Player player1 = chooseTurn();
-        Player player2 = player1 == humanPlayer ? machinePlayer : humanPlayer;
+        System.out.print("Do you want to play with computer(y/n): ");
+        
+        if(scn.next().strip().startsWith("y")) {
+            humanPlayer1.setName("Your");
+            player1 = chooseTurn();
+            player2 = player1 == humanPlayer1? machinePlayer : humanPlayer1;
+        }
+        else{
+            player1 = humanPlayer1;
+            player2 = humanPlayer2;
+            humanPlayer1.setMySymbol('X');
+            humanPlayer2.setMySymbol('O');
+        }
+        
 
         Player currentPlayer = player2;
 
@@ -61,22 +78,25 @@ public class GamePlay {
 
         char choice = scn.next().charAt(0);
         if(choice == 'X'){
-            humanPlayer.setMySymbol('X');
+            humanPlayer1.setMySymbol('X');
             machinePlayer.setOpponentSymbol('X');
             machinePlayer.setMySymbol('O');
-            return humanPlayer;
+            return humanPlayer1;
         }
 
-        humanPlayer.setMySymbol('O');
+        humanPlayer1.setMySymbol('O');
         machinePlayer.setOpponentSymbol('O');
         machinePlayer.setMySymbol('X');
         return machinePlayer;
     }
 
-    private String getWinningMessage(Player player){
-        if(player instanceof HumanPlayer){
+    public String getWinningMessage(Player player){
+        if(player.getName().equals("Your")){
             return "You won!!!!!";
         }
-        return "Machine won(:";
+        else if(player instanceof HumanPlayer){
+            return player.getName() + " won!!!!!";
+        }
+        return player.getName() + " won(:";
     }
 }

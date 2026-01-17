@@ -5,9 +5,19 @@ import java.util.Scanner;
 public class HumanPlayer implements Player{
     private char mySymbol;
     private Grid grid;
+    private String name;
 
-    public HumanPlayer(Grid grid){
+    public HumanPlayer(Grid grid, String name){
         this.grid = grid;
+        this.name = name;
+    }
+
+    public void setName(String name){
+        this.name = name;
+    }
+
+    public String getName(){
+        return name;
     }
 
     public char getMySymbol(){
@@ -23,7 +33,7 @@ public class HumanPlayer implements Player{
         Scanner scn = new Scanner(System.in);
         char userMove;
 
-        System.out.print("Your Move: ");
+        System.out.print(name + " Move: ");
         userMove = scn.nextLine().charAt(0);
         while(!GameRules.isMoveValid(userMove, grid)){
             System.out.print("Please enter a valid move: ");

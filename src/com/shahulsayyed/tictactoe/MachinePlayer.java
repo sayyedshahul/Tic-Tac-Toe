@@ -7,13 +7,19 @@ public class MachinePlayer implements Player{
     private char mySymbol;
     private char opponentSymbol;
     private Grid grid;
+    private String name;
 
 //    public MachinePlayer(MoveGenerator moveGenerator){
 //        this.moveGenerator = moveGenerator;
 //    }
 
-    public MachinePlayer(Grid grid){
+    public String getName(){
+        return name;
+    }
+
+    public MachinePlayer(Grid grid, String name){
         this.grid = grid;
+        this.name = name;
     }
 
     public void setMySymbol(char symbol){
