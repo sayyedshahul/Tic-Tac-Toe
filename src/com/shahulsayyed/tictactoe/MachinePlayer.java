@@ -49,7 +49,7 @@ public class MachinePlayer implements Player{
         if(move == '-'){
             move = getRandomMove();
         }
-
+        System.out.println("My move: " + move);
         return move;
     }
 

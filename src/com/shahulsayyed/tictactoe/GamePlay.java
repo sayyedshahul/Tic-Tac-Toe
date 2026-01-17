@@ -1,6 +1,8 @@
 package com.shahulsayyed.tictactoe;
 
 import java.util.Scanner;
+import org.fusesource.jansi.Ansi;
+import org.fusesource.jansi.AnsiConsole;
 
 public class GamePlay {
     private Grid grid;
@@ -21,7 +23,7 @@ public class GamePlay {
 
         Player currentPlayer = player2;
 
-        System.out.println(grid);
+        grid.printGrid();
         while(!isGameFinished(currentPlayer)){
 //            grid.changeGrid(player1.playMove(), player1.getMySymbol());
 //            System.out.println(grid);
@@ -33,7 +35,7 @@ public class GamePlay {
 
             currentPlayer = currentPlayer == player1 ? player2 : player1;
             grid.changeGrid(currentPlayer.playMove(), currentPlayer.getMySymbol());
-            System.out.println(grid);
+            grid.printGrid();
         }
     }
 
@@ -51,7 +53,11 @@ public class GamePlay {
 
     public Player chooseTurn(){ // For user to select who will go first.
         Scanner scn = new Scanner(System.in);
-        System.out.print("Enter your choice(X/O): ");
+
+        AnsiConsole.systemInstall();
+        System.out.print("Enter your choice(" + Ansi.ansi().fg(Ansi.Color.YELLOW).a("X").reset() +
+                "/" + Ansi.ansi().fg(Ansi.Color.BLUE).a("O").reset() + "): ");
+        AnsiConsole.systemUninstall();
 
         char choice = scn.next().charAt(0);
         if(choice == 'X'){

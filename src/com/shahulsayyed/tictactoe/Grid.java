@@ -1,6 +1,8 @@
 package com.shahulsayyed.tictactoe;
 
 import java.util.ArrayList;
+import org.fusesource.jansi.Ansi;
+import org.fusesource.jansi.AnsiConsole;
 
 public class Grid {
     private int gridSize;
@@ -54,16 +56,37 @@ public class Grid {
         this.grid = gridCopy;
     }
 
-    @Override
-    public String toString(){
-        StringBuilder gridString = new StringBuilder();
+    public void printGrid(){
+        AnsiConsole.systemInstall();
 
         for(ArrayList<Character> row: grid){
             for(char cell: row){
-                gridString.append(cell).append(" ");
+                if(cell == 'X'){
+                    System.out.print(Ansi.ansi().fg(Ansi.Color.YELLOW).a(cell).reset() + " ");
+                }
+                else if(cell == 'O'){
+                    System.out.print(Ansi.ansi().fg(Ansi.Color.BLUE).a(cell).reset() + " ");
+                }
+                else{
+                    System.out.print(cell + " ");
+                }
             }
-            gridString.append("\n");
+
+            System.out.println();
         }
-        return gridString.toString();
+        System.out.println();
+        AnsiConsole.systemUninstall();
     }
+//    @Override
+//    public String toString(){
+//        StringBuilder gridString = new StringBuilder();
+//
+//        for(ArrayList<Character> row: grid){
+//            for(char cell: row){
+//                gridString.append(cell).append(" ");
+//            }
+//            gridString.append("\n");
+//        }
+//        return gridString.toString();
+//    }
 }
