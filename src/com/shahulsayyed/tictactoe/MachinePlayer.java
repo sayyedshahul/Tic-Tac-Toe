@@ -45,7 +45,8 @@ public class MachinePlayer implements Player{
 
     public char getCornerMove(){
         Grid gridCopy = new Grid(grid.getGridSize());
-        gridCopy.setGrid(new ArrayList<>(grid.getGrid()));
+        gridCopy.setGrid(grid.getGrid());
+
         char lastVacantCornerMove = '-';
 
         for(int i = 0; i <= gridCopy.getGridSize() - 1; i+=grid.getGridSize() - 1){
@@ -60,7 +61,7 @@ public class MachinePlayer implements Player{
                         return cornerValue;
                     }
 
-                    gridCopy.getGrid().get(i).set(j, cornerValue);
+                    gridCopy.getGrid().get(i).set(j, cornerValue); // To revert back to actual current game state.
                 }
             }
         }

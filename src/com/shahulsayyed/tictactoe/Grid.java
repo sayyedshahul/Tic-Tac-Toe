@@ -7,7 +7,13 @@ public class Grid {
     private ArrayList<ArrayList<Character>> grid = new ArrayList<>();
 
     public ArrayList<ArrayList<Character>> getGrid(){
-        return new ArrayList<>(grid);
+        ArrayList<ArrayList<Character>> gridCopy = new ArrayList<>();
+
+        for(ArrayList<Character> row: grid){
+            gridCopy.add(new ArrayList<>(row));
+        }
+
+        return gridCopy;
     }
 
     public Grid(int gridSize){
@@ -39,7 +45,13 @@ public class Grid {
     }
 
     public void setGrid(ArrayList<ArrayList<Character>> grid) {
-        this.grid = grid;
+        ArrayList<ArrayList<Character>> gridCopy = new ArrayList<>();
+
+        for(ArrayList<Character> row: grid){
+            gridCopy.add(new ArrayList<>(row));
+        }
+
+        this.grid = gridCopy;
     }
 
     @Override
