@@ -23,7 +23,7 @@ public class GamePlay {
         Player player2;
         
         System.out.println("Welcome to Tic Tac Toe");
-        System.out.print("Enter board size between 3 and 40: ");
+        System.out.print("Enter board size between 3 and 30: ");
         int gridSize = scn.nextInt();
         grid.populateGrid(gridSize);
 

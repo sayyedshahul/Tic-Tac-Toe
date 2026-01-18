@@ -61,18 +61,30 @@ public class Grid {
     public void printGrid(){
         AnsiConsole.systemInstall();
         int position = 0;
+        int width = String.valueOf(grid.size() * grid.size()).length(); // Print width for each cell in the grid.
+        int left = width / 2;
+        int right;
+
+        if(width % 2 == 0){
+            right = left - 1;
+        }
+        else{
+            right = left;
+        }
+
 
         for(ArrayList<Character> row: grid){
             for(char cell: row){
                 position++;
+                //String.format("%" + width + )
                 if(cell == 'X'){
-                    System.out.print(Ansi.ansi().fg(Ansi.Color.YELLOW).a("X").reset() + " ");
+                    System.out.print(Ansi.ansi().fg(Ansi.Color.YELLOW).a(" ".repeat(left) + "X" + " ".repeat(right)).reset() + "  ");
                 }
                 else if(cell == 'O'){
-                    System.out.print(Ansi.ansi().fg(Ansi.Color.BLUE).a("O").reset() + " ");
+                    System.out.print(Ansi.ansi().fg(Ansi.Color.BLUE).a(" ".repeat(left) + "O" + " ".repeat(right)).reset() + "  ");
                 }
                 else{
-                    System.out.print(position + " ");
+                    System.out.print(String.format("%0" + width + "d", position) + "  ");
                 }
             }
 
