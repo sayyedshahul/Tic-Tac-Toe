@@ -23,12 +23,16 @@ public class GamePlay {
         Player player2;
         
         System.out.println("Welcome to Tic Tac Toe");
-        System.out.print("Enter board size between 3 and 30: ");
-        int gridSize = scn.nextInt();
+        
+        int gridSize;
+        do{
+            System.out.print("Enter board size between 3 and 30: ");
+            gridSize = Integer.parseInt(scn.nextLine());
+        }while(gridSize < 3 || gridSize > 30);
         grid.populateGrid(gridSize);
 
         System.out.print("Do you want to play with computer(y/n): ");
-        if(scn.next().strip().startsWith("y")) {
+        if(scn.next().toLowerCase().strip().startsWith("y")) {
             humanPlayer1.setName("Your");
             player1 = chooseTurn();
             player2 = player1 == humanPlayer1? machinePlayer : humanPlayer1;
@@ -71,8 +75,8 @@ public class GamePlay {
                 "/" + Ansi.ansi().fg(Ansi.Color.BLUE).a("O").reset() + "): ");
         AnsiConsole.systemUninstall();
 
-        char choice = scn.next().charAt(0);
-        if(choice == 'X'){
+        boolean isChoiceX = scn.next().toLowerCase().strip().startsWith("x");
+        if(isChoiceX){
             humanPlayer1.setMySymbol('X');
             machinePlayer.setOpponentSymbol('X');
             machinePlayer.setMySymbol('O');
