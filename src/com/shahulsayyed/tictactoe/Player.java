@@ -1,7 +1,7 @@
 package com.shahulsayyed.tictactoe;
 
 public interface Player {
-    char playMove();
+    int playMove();
     char getMySymbol();
     void setMySymbol(char symbol);
     String getName();

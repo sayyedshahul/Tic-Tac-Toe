@@ -29,15 +29,15 @@ public class HumanPlayer implements Player{
     }
 
     @Override
-    public char playMove() {
+    public int playMove() {
         Scanner scn = new Scanner(System.in);
-        char userMove;
+        int userMove;
 
         System.out.print(name + " Move: ");
-        userMove = scn.nextLine().charAt(0);
+        userMove = Integer.parseInt(scn.nextLine());
         while(!GameRules.isMoveValid(userMove, grid)){
             System.out.print("Please enter a valid move: ");
-            userMove = scn.nextLine().charAt(0);
+            userMove = Integer.parseInt(scn.nextLine());
         }
         return userMove;
     }

@@ -5,7 +5,7 @@ import org.fusesource.jansi.Ansi;
 import org.fusesource.jansi.AnsiConsole;
 
 public class Grid {
-    private int gridSize;
+  //  private int gridSize;
     private ArrayList<ArrayList<Character>> grid = new ArrayList<>();
 
     public ArrayList<ArrayList<Character>> getGrid(){
@@ -18,24 +18,26 @@ public class Grid {
         return gridCopy;
     }
 
-    public Grid(int gridSize){
-        this.gridSize = gridSize;
-        char num = '1'; // To assign cell number.
+    public void populateGrid(int gridSize){
+       // this.gridSize = gridSize;
+        char value = ' ';
         for(int i=0; i < gridSize; i++) {
             ArrayList<Character> row = new ArrayList<>();
 
             for (int j = 0; j < gridSize; j++) {
-                row.add(num);
-                num++;
+                row.add(value);
             }
             grid.add(row);
         }
     }
 
-    public void changeGrid(char move, char playerSymbol) {
-        for (int i = 0; i < gridSize; i++) {
-            for (int j = 0; j < gridSize; j++) {
-                if(grid.get(i).get(j) == move){
+    public void changeGrid(int move, char playerSymbol) {
+        int position = 0;
+
+        for (int i = 0; i < grid.size(); i++) {
+            for (int j = 0; j < grid.size(); j++) {
+                position++;
+                if(position == move){
                     grid.get(i).set(j, playerSymbol);
                 }
             }
@@ -43,7 +45,7 @@ public class Grid {
     }
 
     public int getGridSize(){
-        return gridSize;
+        return grid.size();
     }
 
     public void setGrid(ArrayList<ArrayList<Character>> grid) {
@@ -58,17 +60,19 @@ public class Grid {
 
     public void printGrid(){
         AnsiConsole.systemInstall();
+        int position = 0;
 
         for(ArrayList<Character> row: grid){
             for(char cell: row){
+                position++;
                 if(cell == 'X'){
-                    System.out.print(Ansi.ansi().fg(Ansi.Color.YELLOW).a(cell).reset() + " ");
+                    System.out.print(Ansi.ansi().fg(Ansi.Color.YELLOW).a("X").reset() + " ");
                 }
                 else if(cell == 'O'){
-                    System.out.print(Ansi.ansi().fg(Ansi.Color.BLUE).a(cell).reset() + " ");
+                    System.out.print(Ansi.ansi().fg(Ansi.Color.BLUE).a("O").reset() + " ");
                 }
                 else{
-                    System.out.print(cell + " ");
+                    System.out.print(position + " ");
                 }
             }
 

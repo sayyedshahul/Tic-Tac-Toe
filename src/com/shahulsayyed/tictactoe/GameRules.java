@@ -3,10 +3,12 @@ package com.shahulsayyed.tictactoe;
 import java.util.ArrayList;
 
 public class GameRules {
-    public static boolean isMoveValid(char userMove, Grid grid){
+    public static boolean isMoveValid(int userMove, Grid grid){
+        int position = 0;
         for (int i = 0; i < grid.getGridSize(); i++) {
             for (int j = 0; j < grid.getGridSize(); j++) {
-                if(grid.getGrid().get(i).get(j) == userMove){
+                position++;
+                if(position == userMove && grid.getGrid().get(i).get(j) == ' '){
                     return true;
                 }
             }
@@ -29,7 +31,7 @@ public class GameRules {
     public static boolean isDraw(Grid grid){
         for(ArrayList<Character> row: grid.getGrid()){
             for(char cell: row){
-                if(cell != 'X' && cell != 'O'){
+                if(cell == ' '){
                     return false;
                 }
             }
@@ -39,7 +41,7 @@ public class GameRules {
 
     private static boolean isPossibilityWinning(ArrayList<Character> possibility){
         for(int i = 1; i < possibility.size(); i++){
-            if(possibility.get(i) != possibility.get(i - 1)){
+            if(possibility.get(i) == ' ' || possibility.get(i) != possibility.get(i - 1)){
                 return false;
             }
         }

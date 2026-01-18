@@ -23,8 +23,11 @@ public class GamePlay {
         Player player2;
         
         System.out.println("Welcome to Tic Tac Toe");
+        System.out.print("Enter board size between 3 and 40: ");
+        int gridSize = scn.nextInt();
+        grid.populateGrid(gridSize);
+
         System.out.print("Do you want to play with computer(y/n): ");
-        
         if(scn.next().strip().startsWith("y")) {
             humanPlayer1.setName("Your");
             player1 = chooseTurn();
@@ -42,14 +45,6 @@ public class GamePlay {
 
         grid.printGrid();
         while(!isGameFinished(currentPlayer)){
-//            grid.changeGrid(player1.playMove(), player1.getMySymbol());
-//            System.out.println(grid);
-//            if(isGameFinished(player1)) break;
-//
-//            grid.changeGrid(player2.playMove(), player2.getMySymbol());
-//            System.out.println(grid);
-//            if(isGameFinished(player2)) break;
-
             currentPlayer = currentPlayer == player1 ? player2 : player1;
             grid.changeGrid(currentPlayer.playMove(), currentPlayer.getMySymbol());
             grid.printGrid();
