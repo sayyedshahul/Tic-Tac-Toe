@@ -1,4 +1,4 @@
-package com.shahulsayyed.tictactoe;
+package com.shahulsayyed.tictactoe.game;
 
 import java.util.ArrayList;
 

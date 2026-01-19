@@ -1,4 +1,4 @@
-package com.shahulsayyed.tictactoe;
+package com.shahulsayyed.tictactoe.player;
 
 public interface Player {
     int playMove();

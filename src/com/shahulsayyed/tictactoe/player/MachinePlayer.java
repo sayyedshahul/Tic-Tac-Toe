@@ -1,4 +1,7 @@
-package com.shahulsayyed.tictactoe;
+package com.shahulsayyed.tictactoe.player;
+
+import com.shahulsayyed.tictactoe.game.GameRules;
+import com.shahulsayyed.tictactoe.game.Grid;
 
 import java.util.ArrayList;
 
