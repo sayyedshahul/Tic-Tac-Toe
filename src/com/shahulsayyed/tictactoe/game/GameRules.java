@@ -50,7 +50,7 @@ public class GameRules {
 
     public static ArrayList<ArrayList<Character>> getAllWinningPossibilities(Grid grid){
         ArrayList<ArrayList<Character>> allWinningPossibilities = new ArrayList<>();
-
+        ArrayList<ArrayList<Character>> board = grid.getGrid();
 
         ArrayList<Character> diagonal = new ArrayList<>();
         ArrayList<Character> antiDiagonal = new ArrayList<>();
@@ -61,16 +61,16 @@ public class GameRules {
             ArrayList<Character> column = new ArrayList<>();
 
             for(int j = 0; j < grid.getGridSize(); j++){
-               row.add(grid.getGrid().get(i).get(j));
-               column.add(grid.getGrid().get(j).get(i));
+               row.add(board.get(i).get(j));
+               column.add(board.get(j).get(i));
             }
 
             allWinningPossibilities.add(row);
             allWinningPossibilities.add(column);
 
             //For diagonal winning possibilities.
-            diagonal.add(grid.getGrid().get(i).get(i));
-            antiDiagonal.add(grid.getGrid().get(i).get(grid.getGridSize() - 1 - i));
+            diagonal.add(board.get(i).get(i));
+            antiDiagonal.add(board.get(i).get(grid.getGridSize() - 1 - i));
         }
 
         allWinningPossibilities.add(diagonal);

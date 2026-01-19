@@ -60,13 +60,13 @@ public class MachinePlayer implements Player{
     public int getCornerMove(){
         Grid gridCopy = new Grid();
         gridCopy.setGrid(grid.getGrid());
-
+        ArrayList<ArrayList<Character>> board = gridCopy.getGrid();
 
         int move = -1;
 
         for(int i = 0; i <= gridCopy.getGridSize() - 1; i+=grid.getGridSize() - 1){
             for(int j = 0; j <= gridCopy.getGridSize() - 1; j+=grid.getGridSize() - 1){
-                char cornerValue =  gridCopy.getGrid().get(i).get(j);
+                char cornerValue =  board.get(i).get(j);
 
                 if(cornerValue == ' '){
                     move = (i * gridCopy.getGridSize()) + (j + 1); // converting from index to move serial number between 1 and gridSize inclusive.
