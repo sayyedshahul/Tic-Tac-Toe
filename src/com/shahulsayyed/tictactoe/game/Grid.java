@@ -5,7 +5,6 @@ import org.fusesource.jansi.Ansi;
 import org.fusesource.jansi.AnsiConsole;
 
 public class Grid {
-  //  private int gridSize;
     private ArrayList<ArrayList<Character>> grid = new ArrayList<>();
 
     public ArrayList<ArrayList<Character>> getGrid(){
@@ -19,7 +18,6 @@ public class Grid {
     }
 
     public void populateGrid(int gridSize){
-       // this.gridSize = gridSize;
         char value = ' ';
         for(int i=0; i < gridSize; i++) {
             ArrayList<Character> row = new ArrayList<>();
@@ -76,7 +74,6 @@ public class Grid {
         for(ArrayList<Character> row: grid){
             for(char cell: row){
                 position++;
-                //String.format("%" + width + )
                 if(cell == 'X'){
                     System.out.print(Ansi.ansi().fg(Ansi.Color.YELLOW).a(" ".repeat(left) + "X" + " ".repeat(right)).reset() + "  ");
                 }
@@ -93,16 +90,4 @@ public class Grid {
         System.out.println();
         AnsiConsole.systemUninstall();
     }
-//    @Override
-//    public String toString(){
-//        StringBuilder gridString = new StringBuilder();
-//
-//        for(ArrayList<Character> row: grid){
-//            for(char cell: row){
-//                gridString.append(cell).append(" ");
-//            }
-//            gridString.append("\n");
-//        }
-//        return gridString.toString();
-//    }
 }
