@@ -152,8 +152,11 @@ public class MachinePlayer implements Player{
     }
 
     /*
-     This method converts possibility number from allWinningPossibilities and position inside it
-     to a single move number between 1 and gridSize included which is used to play a move.
+     This method converts possibility serial number and position number from allWinningPossibilities
+     to a single move number between 1 and gridSize both inclusive which is used to play a move.
+
+     For e.g. If it is known that this position is from the third element of diagonal, then this method will
+     return 9 in a grid with size 3.
      */
     public int getMoveNumber(int possibilityNumber, int elementNumber){
         int rowColumnNumber = (possibilityNumber + 1) / 2; // Row or column number in the actual grid.
