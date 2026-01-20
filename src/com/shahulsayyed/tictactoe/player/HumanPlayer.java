@@ -1,16 +1,17 @@
 package com.shahulsayyed.tictactoe.player;
 
+import com.shahulsayyed.tictactoe.InputReader;
 import com.shahulsayyed.tictactoe.game.GameRules;
 import com.shahulsayyed.tictactoe.game.Grid;
-
-import java.util.Scanner;
 
 public class HumanPlayer implements Player{
     private char mySymbol;
     private Grid grid;
     private String name;
+    private InputReader inputReader;
 
-    public HumanPlayer(Grid grid, String name){
+    public HumanPlayer(InputReader inputReader, Grid grid, String name){
+        this.inputReader = inputReader;
         this.grid = grid;
         this.name = name;
     }
@@ -33,14 +34,14 @@ public class HumanPlayer implements Player{
 
     @Override
     public int playMove() {
-        Scanner scn = new Scanner(System.in);
         int userMove;
 
         System.out.print(name + " Move: ");
-        userMove = Integer.parseInt(scn.nextLine());
-        while(!GameRules.isMoveValid(userMove, grid)){
+
+        userMove = inputReader.readIntegerFromInput();
+        while(userMove == -1 || !GameRules.isMoveValid(userMove, grid)){
             System.out.print("Please enter a valid move: ");
-            userMove = Integer.parseInt(scn.nextLine());
+            userMove = inputReader.readIntegerFromInput();
         }
         return userMove;
     }
