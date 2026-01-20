@@ -20,16 +20,28 @@ public class Grid {
     }
 
     public void changeGrid(int move, char playerSymbol) {
-        int position = 0;
+        int[] indices = convertPositionToIndices(move);
+        grid.get(indices[0]).set(indices[1], playerSymbol);
+    }
 
-        for (int i = 0; i < grid.size(); i++) {
-            for (int j = 0; j < grid.size(); j++) {
-                position++;
-                if(position == move){
-                    grid.get(i).set(j, playerSymbol);
-                }
-            }
-        }
+    public void changeGrid(int i, int j, char playerSymbol) {
+        grid.get(i).set(j, playerSymbol);
+    }
+
+    public char getValueFromGrid(int position){
+        int[] indices = convertPositionToIndices(position);
+        return grid.get(indices[0]).get(indices[1]);
+    }
+
+    private int[] convertPositionToIndices(int position){
+        int index = position - 1;
+        int row = index / grid.size();
+        int col = index % grid.size();
+        return new int[]{row, col};
+    }
+
+    public char getValueFromGrid(int row, int col){
+        return grid.get(row).get(col);
     }
 
     public int getGridSize(){

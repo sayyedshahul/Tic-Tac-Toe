@@ -76,13 +76,13 @@ public class MachinePlayer implements Player{
 
                 if(cornerValue == ' '){
                     move = (i * gridCopy.getGridSize()) + (j + 1); // converting from index to move serial number between 1 and gridSize inclusive.
-                    gridCopy.changeGrid(move, mySymbol); // For checking  if wins in two moves is possible.
+                    gridCopy.changeGrid(i, j, mySymbol); // For checking  if wins in two moves is possible.
 
                     if(getNextWinningMove(false, gridCopy) != -1){
                         return move;
                     }
 
-                    gridCopy.changeGrid(move, cornerValue); // To revert back to actual current game state.
+                    gridCopy.changeGrid(i, j, cornerValue); // To revert back to actual current game state.
                 }
             }
         }

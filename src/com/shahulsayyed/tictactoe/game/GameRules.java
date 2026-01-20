@@ -4,14 +4,8 @@ import java.util.ArrayList;
 
 public class GameRules {
     public static boolean isMoveValid(int userMove, Grid grid){
-        int position = 0;
-        for (int i = 0; i < grid.getGridSize(); i++) {
-            for (int j = 0; j < grid.getGridSize(); j++) {
-                position++;
-                if(position == userMove && grid.getGrid().get(i).get(j) == ' '){
-                    return true;
-                }
-            }
+        if(userMove >= 1 && userMove <= grid.getGridSize() * grid.getGridSize() && grid.getValueFromGrid(userMove) == ' '){
+            return true;
         }
         return false;
     }
