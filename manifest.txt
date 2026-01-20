@@ -1,3 +1,0 @@
-Main-Class: com.shahulsayyed.tictactoe.App
-Class-Path: libraries/jansi-2.4.2.jar
-
