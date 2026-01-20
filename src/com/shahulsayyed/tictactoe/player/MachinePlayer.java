@@ -100,11 +100,25 @@ public class MachinePlayer implements Player{
     }
 
     private int getRandomMove(){
-        int move = 0;
-        while(!GameRules.isMoveValid(move, grid)){
-            move = (int)(Math.random() * 9) + 1;
+        ArrayList<Integer> availableMoves = returnAvailableMoves();
+        int index = 0;
+        index = (int)(Math.random() * availableMoves.size());
+
+        return availableMoves.get(index);
+    }
+
+
+    private ArrayList<Integer> returnAvailableMoves(){
+        ArrayList<Integer> availableMoves = new ArrayList<>();
+
+        for(int i = 0; i < grid.getGridSize(); i++){
+            for(int j = 0; j < grid.getGridSize(); j++){
+                if(grid.getValueFromGrid(i, j) == ' '){
+                    availableMoves.add((i * grid.getGridSize()) + (j + 1));
+                }
+            }
         }
-        return move;
+        return availableMoves;
     }
 
     //This checks whether anyone can win in the next move.
