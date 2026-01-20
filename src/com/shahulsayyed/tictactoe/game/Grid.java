@@ -48,17 +48,7 @@ public class Grid {
         return grid.size();
     }
 
-    public void setGrid(ArrayList<ArrayList<Character>> grid) {
-        ArrayList<ArrayList<Character>> gridCopy = new ArrayList<>();
-
-        for(ArrayList<Character> row: grid){
-            gridCopy.add(new ArrayList<>(row));
-        }
-
-        this.grid = gridCopy;
-    }
-
-    public void printGrid(){
+    void printGrid(){
         AnsiConsole.systemInstall();
         int position = 0;
         int width = String.valueOf(grid.size() * grid.size()).length(); // Print width for each cell in the grid.

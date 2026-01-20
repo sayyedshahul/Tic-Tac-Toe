@@ -60,7 +60,7 @@ public class MachinePlayer implements Player{
     Return first corner move which is vacant and makes it possible to win in next two moves, otherwise return the
     last vacant corner move. If no corner move is available return -1.
      */
-    public int getCornerMove(){
+    private int getCornerMove(){
         Grid gridCopy = new Grid();
         gridCopy.populateGrid(grid.getGridSize());
         for(int i = 0; i < grid.getGridSize(); i++){
@@ -89,7 +89,7 @@ public class MachinePlayer implements Player{
         return move;
     }
 
-    public int checkCenterMove(){
+    private int checkCenterMove(){
         int position = 0;
         int index = (grid.getGridSize() - 1) / 2; // center index in the grid.
         char move = grid.getValueFromGrid(index, index);
@@ -108,7 +108,7 @@ public class MachinePlayer implements Player{
     }
 
     //This checks whether anyone can win in the next move.
-    public int getNextWinningMove(boolean forOpponent, Grid grid){
+    private int getNextWinningMove(boolean forOpponent, Grid grid){
         ArrayList<ArrayList<Character>> allWinningPossibilities = GameRules.getAllWinningPossibilities(grid);
         int capturedPositionCount;
         int vacantPositionCount;
@@ -158,7 +158,7 @@ public class MachinePlayer implements Player{
      For e.g. If it is known that this position is from the third element of diagonal, then this method will
      return 9 in a grid with size 3.
      */
-    public int getMoveNumber(int possibilityNumber, int elementNumber){
+    private int getMoveNumber(int possibilityNumber, int elementNumber){
         int rowColumnNumber = (possibilityNumber + 1) / 2; // Row or column number in the actual grid.
         int gridSize = grid.getGridSize();
         int result;

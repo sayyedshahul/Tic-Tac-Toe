@@ -46,7 +46,7 @@ public class GamePlay {
         System.out.print("Do you want to play with computer(y/n): ");
         if(inputReader.readLine().toLowerCase().strip().startsWith("y")) {
             humanPlayer1.setName("Your"); // This will be helpful while prompting for input.
-            player1 = chooseTurn();
+            player1 = determineFirstPlayer();
             player2 = player1 == humanPlayer1? machinePlayer : humanPlayer1;
         }
         else{
@@ -79,7 +79,7 @@ public class GamePlay {
         return false;
     }
 
-    public Player chooseTurn(){ // For user to select who will go first. It returns the player who will go first.
+    private Player determineFirstPlayer(){ // For user to select who will go first. It returns the player who will go first.
         AnsiConsole.systemInstall();
         System.out.print("Enter your choice(" + Ansi.ansi().fg(Ansi.Color.YELLOW).a("X").reset() +
                 "/" + Ansi.ansi().fg(Ansi.Color.BLUE).a("O").reset() + "): ");
@@ -99,7 +99,7 @@ public class GamePlay {
         return machinePlayer;
     }
 
-    public String getWinningMessage(Player player){
+    private String getWinningMessage(Player player){
         if(player.getName().equals("Your")){
             return "You won!!!!!";
         }

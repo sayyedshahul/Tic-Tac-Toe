@@ -10,7 +10,7 @@ public class GameRules {
         return false;
     }
 
-    public static boolean isThereAnyWinner(Grid grid){
+     static boolean isThereAnyWinner(Grid grid){
         ArrayList<ArrayList<Character>> allWinningPossibilities = getAllWinningPossibilities(grid);
 
         for(ArrayList<Character> possibility: allWinningPossibilities){
@@ -22,7 +22,7 @@ public class GameRules {
         return false;
     }
 
-    public static boolean isDraw(Grid grid){
+     static boolean isDraw(Grid grid){
         for(int i = 0; i < grid.getGridSize(); i++){
             for(int j = 0; j < grid.getGridSize(); j++){
                 if(grid.getValueFromGrid(i, j) == ' '){
