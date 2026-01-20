@@ -2,7 +2,6 @@ package com.shahulsayyed.tictactoe.player;
 
 import com.shahulsayyed.tictactoe.game.GameRules;
 import com.shahulsayyed.tictactoe.game.Grid;
-
 import java.util.ArrayList;
 
 public class MachinePlayer implements Player{
@@ -57,16 +56,23 @@ public class MachinePlayer implements Player{
         return move;
     }
 
+    /*
+    Return first corner move which is vacant and makes it possible to win in next two moves, otherwise return the
+    last vacant corner move. If no corner move is available return -1.
+     */
     public int getCornerMove(){
         Grid gridCopy = new Grid();
-        gridCopy.setGrid(grid.getGrid());
-        ArrayList<ArrayList<Character>> board = gridCopy.getGrid();
+        gridCopy.populateGrid(grid.getGridSize());
+        for(int i = 0; i < grid.getGridSize(); i++){
+            for(int j = 0; j < grid.getGridSize(); j++){
+                gridCopy.changeGrid(i, j, grid.getValueFromGrid(i, j));
+            }
+        }
 
         int move = -1;
-
         for(int i = 0; i <= gridCopy.getGridSize() - 1; i+=grid.getGridSize() - 1){
             for(int j = 0; j <= gridCopy.getGridSize() - 1; j+=grid.getGridSize() - 1){
-                char cornerValue =  board.get(i).get(j);
+                char cornerValue =  gridCopy.getValueFromGrid(i, j);
 
                 if(cornerValue == ' '){
                     move = (i * gridCopy.getGridSize()) + (j + 1); // converting from index to move serial number between 1 and gridSize inclusive.
@@ -86,7 +92,7 @@ public class MachinePlayer implements Player{
     public int checkCenterMove(){
         int position = 0;
         int index = (grid.getGridSize() - 1) / 2; // center index in the grid.
-        char move = grid.getGrid().get(index).get(index);
+        char move = grid.getValueFromGrid(index, index);
         if(move == ' '){
             return (index * grid.getGridSize()) + (index + 1);
         }

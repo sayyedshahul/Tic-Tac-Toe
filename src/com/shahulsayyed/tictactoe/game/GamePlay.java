@@ -42,7 +42,6 @@ public class GamePlay {
         play();
     }
 
-
     private void setupGameMode(){
         System.out.print("Do you want to play with computer(y/n): ");
         if(inputReader.readLine().toLowerCase().strip().startsWith("y")) {

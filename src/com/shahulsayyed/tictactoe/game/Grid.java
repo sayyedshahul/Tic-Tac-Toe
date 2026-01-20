@@ -7,16 +7,6 @@ import org.fusesource.jansi.AnsiConsole;
 public class Grid {
     private ArrayList<ArrayList<Character>> grid = new ArrayList<>();
 
-    public ArrayList<ArrayList<Character>> getGrid(){
-        ArrayList<ArrayList<Character>> gridCopy = new ArrayList<>();
-
-        for(ArrayList<Character> row: grid){
-            gridCopy.add(new ArrayList<>(row));
-        }
-
-        return gridCopy;
-    }
-
     public void populateGrid(int gridSize){
         char value = ' ';
         for(int i=0; i < gridSize; i++) {
